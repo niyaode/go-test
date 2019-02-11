@@ -1,0 +1,33 @@
+server:
+  port: 8091
+
+logging:
+  level: {org.springframework.security: DEBUG,net.sdake: debug}
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    database: 2
+    host: localhost  # Redis\u670D\u52A1\u5668\u4E3B\u673A\u3002
+    port: 6379
+  session:
+    store-type: redis
+
+
+security:
+  oauth2:
+    client:
+      clientId: admin-client
+      clientSecret: d609ce09-b014-4852-a573-0d0eafc7f99d
+      accessTokenUri: http://127.0.0.1:8090/oauth/token # \u8BF7\u6C42\u4EE4\u724C\u7684\u5730\u5740
+      userAuthorizationUri: http://127.0.0.1:8090/oauth/authorize # \u8BF7\u6C42\u4EE4\u724C\u7684\u5730\u5740
+      client-authentication-scheme: form # \u9ED8\u8BA4\u4E3Aheader\u3002\u4F46\u662F\uFF0Cform\u5982\u679C\u50CFGithub\u4E00\u6837\uFF0C\u60A8\u7684OAuth2\u63D0\u4F9B\u7A0B\u5E8F\u4E0D\u559C\u6B22\u6807\u5934\u8EAB\u4EFD\u9A8C\u8BC1\uFF0C\u5219\u53EF\u80FD\u9700\u8981\u5C06\u5176\u8BBE\u7F6E\u4E3A\uFF09
+      scope: [all]
+    resource:
+      user-info-uri: http://127.0.0.1:8090/user
+      prefer-token-info: false
+      jwt:
+        key-value: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgxyQqq886wwmSzg6PCgnn/2RNJlVOklncWYjoNKNma6P5yEWDKxskfnERRSkTiKixiniz6ypv3PnBgJd8ENc/Yzo282DP1v2bSxnZ85A2JDVuPcYGHLjjH9a7HlkUySihpglzbyz/PSc3JyaZBKkfP/9SIITPiGvru3Rnnri7q1r0IX9zooP6FJOpFvSNZxgRoyWKjZCwZHgYtJV8BUWmHQHer8qMQ7iPZreN/W+8Anr4qTBCjRtwLX1cyhDG/X4+nX+Fl2OoZ9zst2eu2zoAbsFWyatdLd5AWIJLAx0+fvrlt896wyhG89MRmfBfgGbJgc71HdzUONCHOvX8abaVQIDAQAB
+          -----END PUBLIC KEY-----
